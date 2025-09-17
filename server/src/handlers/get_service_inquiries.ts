@@ -1,8 +1,20 @@
+import { db } from '../db';
+import { serviceInquiriesTable } from '../db/schema';
 import { type ServiceInquiry } from '../schema';
+import { desc } from 'drizzle-orm';
 
 export const getServiceInquiries = async (): Promise<ServiceInquiry[]> => {
-  // This is a placeholder declaration! Real code should be implemented here.
-  // The goal of this handler is to fetch all service inquiries from the database.
-  // This will be used by admin interface to view all service-specific inquiries.
-  return [];
+  try {
+    // Fetch all service inquiries ordered by most recent first
+    const results = await db.select()
+      .from(serviceInquiriesTable)
+      .orderBy(desc(serviceInquiriesTable.created_at))
+      .execute();
+
+    // Return the results (no numeric conversions needed for this table)
+    return results;
+  } catch (error) {
+    console.error('Failed to fetch service inquiries:', error);
+    throw error;
+  }
 };

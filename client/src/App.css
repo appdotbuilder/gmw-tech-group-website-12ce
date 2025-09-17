@@ -1,131 +1,143 @@
-:root {
-  --background: #fff;
-  --text: #000;
-  --text-secondary: #666;
-  --spinner-border: #000;
-  --spinner-border-top: transparent;
-  --dot-color: #000;
-  --grid-color: rgba(0,0,0,0.05);
-  --gradient-color: rgba(0,0,0,0.03);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-      --background: #000;
-      --text: #fff;
-      --text-secondary: #888;
-      --spinner-border: #fff;
-      --spinner-border-top: transparent;
-      --dot-color: #fff;
-      --grid-color: rgba(255,255,255,0.05);
-      --gradient-color: rgba(255,255,255,0.03);
+    --cornflower-50: 239 246 255;
+    --cornflower-100: 219 234 254;
+    --cornflower-200: 191 219 254;
+    --cornflower-300: 147 197 253;
+    --cornflower-400: 96 165 250;
+    --cornflower-500: 59 130 246;
+    --cornflower-600: 37 99 235;
+    --cornflower-700: 29 78 216;
+    --cornflower-800: 30 64 175;
+    --cornflower-900: 30 58 138;
+    --cornflower-950: 23 37 84;
   }
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--background);
-  color: var(--text);
-  padding: 20px;
-  line-height: 1.5;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-.container {
-  text-align: center;
-  max-width: 600px;
-}
-h1.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-}
-p.description {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-}
-.spinner {
-  width: 40px;
-  height: 40px;
-  margin: 2rem auto;
-  position: relative;
-}
-.spinner::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--spinner-border);
-  border-top-color: var(--spinner-border-top);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  margin-top: 2rem;
-}
-.dot {
-  width: 4px;
-  height: 4px;
-  background: var(--dot-color);
-  border-radius: 50%;
-  animation: fade 1.4s infinite ease-in-out;
-}
-.dot:nth-child(1) { animation-delay: -0.32s; }
-.dot:nth-child(2) { animation-delay: -0.16s; }
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-@keyframes fade {
-  0%, 80%, 100% { opacity: 0; }
-  40% { opacity: 1; }
-}
-.grid {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-image: 
-      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-  background-size: 24px 24px;
-  transition: background-image 0.3s ease;
-}
-.gradient {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background: radial-gradient(circle at center, var(--gradient-color) 0%, transparent 50%);
-  transition: background 0.3s ease;
+
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(to bottom right, rgb(239 246 255), rgb(239 246 255), rgb(238 242 255));
+  }
+  
+  .gradient-text {
+    background: linear-gradient(to right, rgb(37 99 235), rgb(99 102 241));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(to right, rgb(37 99 235), rgb(37 99 235), rgb(67 56 202));
+  }
+  
+  .card-hover {
+    transition: all 0.3s;
+  }
+  
+  .card-hover:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+  
+  .btn-primary {
+    background-color: rgb(37 99 235);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: rgb(29 78 216);
+  }
+  
+  .btn-secondary {
+    border-color: rgb(37 99 235);
+    color: rgb(37 99 235);
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgb(239 246 255);
+  }
+  
+  .text-cornflower-50 { color: rgb(239 246 255); }
+  .text-cornflower-100 { color: rgb(219 234 254); }
+  .text-cornflower-200 { color: rgb(191 219 254); }
+  .text-cornflower-300 { color: rgb(147 197 253); }
+  .text-cornflower-400 { color: rgb(96 165 250); }
+  .text-cornflower-500 { color: rgb(59 130 246); }
+  .text-cornflower-600 { color: rgb(37 99 235); }
+  .text-cornflower-700 { color: rgb(29 78 216); }
+  .text-cornflower-800 { color: rgb(30 64 175); }
+  .text-cornflower-900 { color: rgb(30 58 138); }
+  .text-cornflower-950 { color: rgb(23 37 84); }
+  
+  .bg-cornflower-50 { background-color: rgb(239 246 255); }
+  .bg-cornflower-100 { background-color: rgb(219 234 254); }
+  .bg-cornflower-200 { background-color: rgb(191 219 254); }
+  .bg-cornflower-300 { background-color: rgb(147 197 253); }
+  .bg-cornflower-400 { background-color: rgb(96 165 250); }
+  .bg-cornflower-500 { background-color: rgb(59 130 246); }
+  .bg-cornflower-600 { background-color: rgb(37 99 235); }
+  .bg-cornflower-700 { background-color: rgb(29 78 216); }
+  .bg-cornflower-800 { background-color: rgb(30 64 175); }
+  .bg-cornflower-900 { background-color: rgb(30 58 138); }
+  .bg-cornflower-950 { background-color: rgb(23 37 84); }
+  
+  .border-cornflower-50 { border-color: rgb(239 246 255); }
+  .border-cornflower-100 { border-color: rgb(219 234 254); }
+  .border-cornflower-200 { border-color: rgb(191 219 254); }
+  .border-cornflower-300 { border-color: rgb(147 197 253); }
+  .border-cornflower-400 { border-color: rgb(96 165 250); }
+  .border-cornflower-500 { border-color: rgb(59 130 246); }
+  .border-cornflower-600 { border-color: rgb(37 99 235); }
+  .border-cornflower-700 { border-color: rgb(29 78 216); }
+  .border-cornflower-800 { border-color: rgb(30 64 175); }
+  .border-cornflower-900 { border-color: rgb(30 58 138); }
+  .border-cornflower-950 { border-color: rgb(23 37 84); }
+  
+  .hover\:bg-cornflower-50:hover { background-color: rgb(239 246 255); }
+  .hover\:bg-cornflower-100:hover { background-color: rgb(219 234 254); }
+  .hover\:bg-cornflower-700:hover { background-color: rgb(29 78 216); }
+  .hover\:bg-cornflower-800:hover { background-color: rgb(30 64 175); }
 }
 
-.footer {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.footer-link {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: bold;
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(249 250 251);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(37 99 235);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(29 78 216);
 }
